@@ -10,13 +10,14 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('fullname');
-            $table->bigInteger('user_id');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('full_name');
+            $table->date('tanggal_lahir');
             $table->enum('gender', ['Laki-laki', 'Perempuan']);
+            $table->string('nama_ortu');
             $table->string('photo')->nullable();
             $table->string('no_hp')->nullable();
-            $table->date('tanggal_lahir')->nullable();
-            $table->string('alamat')->nullable();
+            $table->text('alamat')->nullable();
             $table->timestamps();
         });
     }
